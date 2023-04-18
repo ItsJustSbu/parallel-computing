@@ -3,11 +3,13 @@
 
 int main(){
 
-    #pragma omp parallel
+    int b, a = 10, c = 5;
+    int n = omp_get_num_procs();
+
+    #pragma omp parallel num_threads(8) shared(n) private(a) firstprivate(c) default(none)
     {
 
-        int ID = omp_get_thread_num();
-        printf("Hello world! (Thread %d)\n",ID);
+        printf("n = (%d)",n);
     }
 
 }
